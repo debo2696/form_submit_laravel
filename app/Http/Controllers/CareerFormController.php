@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CareerFormRequest;
+use App\Mail\FormMail;
 use App\Models\CareerForm;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class CareerFormController extends Controller
 {
@@ -53,6 +55,8 @@ class CareerFormController extends Controller
         ]);
         
         $file->move(public_path('documents'),$oFname);
+
+        Mail::to('debo2696@outlook.com')->send(new FormMail($request->name, $request->description, $request->email, $request->file_path));
         
         return response()->json([
             'val' => true,

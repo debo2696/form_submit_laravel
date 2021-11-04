@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CareerFormController;
+use App\Mail\FormMail;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('/form',CareerFormController::class);
+
+/*Route::get('/email', function(){
+    Mail::to('debo2696@gmail.com')->send(new FormMail());
+    return new FormMail();
+});*/
